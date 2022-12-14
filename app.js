@@ -3,25 +3,45 @@ import Dog from './Dog.js'
 import dogsData from './data.js';
 
 
-let currentDog = new Dog(dogsData.shift());
-let moreDogs = true;
-let isWaiting = false;
+let currentDog = new Dog(dogsData.shift()); // get the first dog from the array (index 0)
 
-document.querySelectorAll('.swipe-btn').forEach(btn => {
-  btn.addEventListener('click', () => { // move logic to stand-alone function
+let isWaiting = false; // use for badge application?
 
-    currentDog.hasBeenSwiped = true; // flip the swiped flag
+const swipeBtns = document.querySelectorAll('.swipe-btn');
+
+// hasBeenSwiped - set to true if either btn clicked
+// hasBeenLiked - set to true if 'accept' btn clicked
+
+swipeBtns.forEach(btn => {
+  btn.addEventListener('click', (e) => { // move logic to stand-alone function
+
+    currentDog.hasBeenSwiped = true; // flip the swiped flag  
+    if (e.target.classList.contains('swipe-right')){ // determine btn selected
+      currentDog.hasBeenLiked = true;
+      handleBadgeHtml()
+    } 
+    if (e.target.classList.contains('swipe-left')) { // determine btn selected
+      handleBadgeHtml()
+    }
+
     getNextDog()
   })
 })
 
-function handleSwipe() {
-
+function handleBadgeHtml() {
+  const badge = document.querySelector('#badge');
+  if (currentDog.hasBeenLiked) {
+    badge.innerHTML = `
+      <img src="./images/badge-like.png" class="badge-img" alt="like">
+      `
+  } else {
+    badge.innerHTML = `
+      <img src="./images/badge-nope.png" class="badge-img" alt="nope">
+      `
+  }
 }
 
 
-// hasBeenSwiped - set to true if either btn clicked
-// hasBeenLiked - set to true if 'accept' btn clicked
 
 function getNextDog() {
   if (dogsData.length) { // check there's dogs available in the array
@@ -40,6 +60,7 @@ function getNextDog() {
 function render() {
   document.querySelector('.dog-container').innerHTML = currentDog.getDogHtml()
   console.log(`${currentDog.name} has been swiped: ${currentDog.hasBeenSwiped}`)
+  console.log(`${currentDog.name} has been liked: ${currentDog.hasBeenLiked}`)
 }
 
 render()

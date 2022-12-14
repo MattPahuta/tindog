@@ -182,3 +182,7 @@ footer {
   display: grid;
   place-items: center;
 }
+
+.swipe-btn-icon {
+  object-fit: cover;
+}
