@@ -70,6 +70,9 @@ h1 {
 .container {
   width: 550px;
   margin-inline: auto;
+  margin-top: 2em;
+  border: 2px solid #ddd;
+  border-radius: 8px;
 }
 
 header {
@@ -89,19 +92,78 @@ header {
   max-height: 42px;
 }
 
+
 /* Dog Styles */
-.dog {
+/* .dog-container {
   position: relative;
   padding: 0 8px;
 }
 
 .dog-img {
+  height: 750px;
+  object-fit: cover;
   border-radius: 15px;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) -11.44%, rgba(0, 0, 0, 0) 39.97%), url(dog3.jpg);
+}
+
+.badge {
+  position: absolute;
 }
 
 .dog-meta {
+  width: 85%;
   position: absolute;
-  top: 650px;
-  left: 25px;
+  top: 82%;
+  left: 20px;
+} */
+
+/* handle dog image styles as bg image */
+main {
+  padding: 0 8px;
+}
+
+.dog-container {
+  padding: 1em;
+  /* height: 750px; */
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border-radius: 15px;
+} 
+
+.demo {
+  background-image: url('../images/dog-rex.jpg');
+}
+
+.dog-meta {
+  max-width: 85%;
+}
+
+
+footer {
+  padding: 1.5rem 0;
+}
+
+.footer-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* interactive buttons */
+.btn {
+  cursor: pointer;
+  width: 92px;
+  height: 92px;
+  background: #fff;
+  box-shadow: 0px 10px 20px #E9E9EA;
+  border: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
 }

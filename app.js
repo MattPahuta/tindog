@@ -1,16 +1,38 @@
-import dogs from './data.js';
+// import Dog class and dogs array of dog objects
 import Dog from './Dog.js'
+import dogsData from './data.js';
 
-// dogs array
-// let dogsArray = ['Rex', 'Bella', 'Teddy']
 
-// function getNewDog() {
-//   const nextDogData = dogs[dogs.pop()];
-//   return nextDogData ? new Dog(nextDogData) : {};
-// }
+let currentDog = new Dog(dogsData.shift());
+let moreDogs = true; // track if there are dogs left in array
+let isWaiting = false;
 
-function render() {
-  document.querySelector('.dog').innerHTML = dog.getDogHtml()
+// Event listeners 
+document.getElementById('swipe-right').addEventListener('click', () => { // accept/reject btns
+  console.log('swipe right')
+  if (moreDogs && !isWaiting) {
+    getNextDog()
+    isWaiting = true
+    setTimeout(()=> isWaiting = false, 1500)
+  }
+
+})
+
+function getNextDog() {
+  if (dogsData.length) {
+    currentDog = new Dog(dogsData.shift())
+    setTimeout(render, 1000)
+  } else {
+    console.log('nope')
+  }
+
 }
 
-const dog = new Dog(dogs[0])
+
+
+function render() {
+  document.querySelector('.dog').innerHTML = currentDog.getDogHtml()
+}
+
+render()
+
