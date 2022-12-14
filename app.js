@@ -4,23 +4,30 @@ import dogsData from './data.js';
 
 
 let currentDog = new Dog(dogsData.shift());
-let moreDogs = true; // track if there are dogs left in array
+let moreDogs = true;
 let isWaiting = false;
 
-// Event listeners 
-document.getElementById('swipe-right').addEventListener('click', () => { // accept/reject btns
-  console.log('swipe right')
-  if (moreDogs && !isWaiting) {
-    getNextDog()
-    isWaiting = true
-    setTimeout(()=> isWaiting = false, 1500)
-  }
+document.querySelectorAll('.swipe-btn').forEach(btn => {
+  btn.addEventListener('click', () => { // move logic to stand-alone function
 
+    currentDog.hasBeenSwiped = true; // flip the swiped flag
+    getNextDog()
+  })
 })
 
+function handleSwipe() {
+
+}
+
+
+// hasBeenSwiped - set to true if either btn clicked
+// hasBeenLiked - set to true if 'accept' btn clicked
+
 function getNextDog() {
-  if (dogsData.length) {
+  if (dogsData.length) { // check there's dogs available in the array
     currentDog = new Dog(dogsData.shift())
+
+
     setTimeout(render, 1000)
   } else {
     console.log('nope')
@@ -31,7 +38,8 @@ function getNextDog() {
 
 
 function render() {
-  document.querySelector('.dog').innerHTML = currentDog.getDogHtml()
+  document.querySelector('.dog-container').innerHTML = currentDog.getDogHtml()
+  console.log(`${currentDog.name} has been swiped: ${currentDog.hasBeenSwiped}`)
 }
 
 render()

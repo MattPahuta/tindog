@@ -8,8 +8,8 @@ class Dog {
   getDogHtml() {
     const { name, avatar, age, bio } = this;
     return `
-    <div class="dog">
-      <img src="./${avatar}" alt="" class="dog-img">
+    <div class="dog" style="background-image: url(./${avatar});">
+      <div class="badge" id="badge"></div>
       <div class="dog-meta">
         <h1>${name}, ${age}</h1>
         <p>${bio}</p>
