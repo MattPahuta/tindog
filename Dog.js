@@ -1,5 +1,4 @@
 // Dog class
-
 class Dog {
   constructor(data) {
     Object.assign(this, data)
@@ -10,7 +9,7 @@ class Dog {
     return `
     <div class="dog" style="background-image: url(./${avatar});">
       <div class="badge" id="badge"></div>
-      <div class="dog-meta">
+      <div class="meta">
         <h1>${name}, ${age}</h1>
         <p>${bio}</p>
       </div>
@@ -20,15 +19,3 @@ class Dog {
 }
 
 export default Dog
-
-
-/*
-  <div class="img-container" style="background-image: url(./${avatar});">
-    <div class="badge" id="badge">
-    </div>
-      <div class="user-info">
-        <h3>${name}, ${age}</h3>
-        <p>${bio}</p>
-      </div>
-  </div>
-*/
