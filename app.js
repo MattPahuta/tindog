@@ -4,71 +4,51 @@ import dogsData from './data.js';
 
 let currentDog = new Dog(dogsData.shift()); // get the first dog from the array (index 0)
 let isWaiting = false; // add to prevent double button execute on same image
-const swipeBtns = document.querySelectorAll('.swipe-btn');
+const swipeBtns = document.querySelectorAll('.swipe-btn'); // get the nope/like buttons
 
-// hasBeenSwiped - set to true if either btn clicked
-// hasBeenLiked - set to true if 'accept' btn clicked
-
-// swipe handling 1.0
-// swipeBtns.forEach(btn => {
-//   btn.addEventListener('click', (e) => { // move logic to stand-alone function
-
-//     currentDog.hasBeenSwiped = true; // flip the swiped flag  
-//     if (e.target.classList.contains('swipe-right')){ // determine btn selected
-//       currentDog.hasBeenLiked = true;
-//       handleBadgeHtml()
-//     } 
-//     if (e.target.classList.contains('swipe-left')) { // determine btn selected
-//       handleBadgeHtml()
-//     }
-//     getNextDog()
-//   })
-// })
-
-// swipe handling 2.0
-swipeBtns.forEach(btn => {
-  btn.addEventListener('click', handleSwipe)
+swipeBtns.forEach(btn => { // add click listener to swipe buttons
+  btn.addEventListener('click', handleSwipe) // attach handleSwipe to swipe buttons
 })
 
 function handleSwipe(e) {
-  currentDog.hasBeenSwiped = true; // flip the swiped flag  
-  if (e.target.classList.contains('swipe-right')){ // determine btn selected
-    currentDog.hasBeenLiked = true;
-  } 
-  handleBadgeHtml()
-  getNextDog()
+  if (!isWaiting) { // check if isWaiting resolves as falsy
+    currentDog.hasBeenSwiped = true; // flip the swiped flag  
+    if (e.target.classList.contains('swipe-right')){ // determine btn selected
+      currentDog.hasBeenLiked = true; // flip hasBeenLiked to true
+    } 
+    handleBadgeHtml() // call handleBadgeHtml
+    getNextDog() // call getNextDog
+  }
+}
+
+
+// getNextDog v1.1
+function getNextDog() {
+  isWaiting = true; // prevent handleSwipe from running while waiting to get next dog
+  if (dogsData.length) { // check there's dogs available in the array
+    currentDog = new Dog(dogsData.shift()) // assign next dog to currentDog
+    setTimeout(render, 1200) // wait ~ a second to render next dog
+  } else { // if no more dogs...
+    // console.log('nope')
+    setTimeout(noMoreDogsHtml, 1200) // wait ~ a second to call noMoreDogs
+  }
 }
 
 // handle the like/nope badges
 function handleBadgeHtml() {
-  const badge = document.querySelector('#badge');
-  if (currentDog.hasBeenLiked) {
+  const badge = document.querySelector('#badge'); // get the badge element
+  if (currentDog.hasBeenLiked) { // html if liked
     badge.innerHTML = `
       <img src="./images/badge-like.png" class="badge-img" alt="like">
       `
-  } else {
+  } else { // html if rejected
     badge.innerHTML = `
       <img src="./images/badge-nope.png" class="badge-img" alt="nope">
       `
   }
 }
 
-
-function getNextDog() {
-  if (dogsData.length) { // check there's dogs available in the array
-    currentDog = new Dog(dogsData.shift())
-    setTimeout(render, 1200) // wait a second to render next dog
-  } else {
-    console.log('nope')
-    // add a render of end of dogs array message
-    setTimeout(noMoreDogsHtml, 1200)
-    // noMoreDogsHtml()
-  }
-}
-
-function noMoreDogsHtml() {
-  // disable buttons?
-  // add isWaiting
+function noMoreDogsHtml() { // end of dogs array messaging
   document.querySelector('.dog-container').innerHTML = `
   <div class="animal cat-end"">
     <div class="dog-meta">
@@ -79,12 +59,11 @@ function noMoreDogsHtml() {
   `
 }
 
-
-
 function render() {
+  isWaiting = false; // once the new dog is called to render, flip isWaiting to false
   document.querySelector('.dog-container').innerHTML = currentDog.getDogHtml()
-  console.log(`${currentDog.name} has been swiped: ${currentDog.hasBeenSwiped}`) // debug
-  console.log(`${currentDog.name} has been liked: ${currentDog.hasBeenLiked}`) // debug
+  // console.log(`${currentDog.name} has been swiped: ${currentDog.hasBeenSwiped}`) // debug
+  // console.log(`${currentDog.name} has been liked: ${currentDog.hasBeenLiked}`) // debug
 }
 
 render()

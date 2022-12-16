@@ -33,7 +33,7 @@ const dogsData = [
     hasBeenLiked: false
   },
   {
-    name: "Josie",
+    name: "Jovie",
     avatar: "images/dog-josie.jpg",
     age: 6,
     bio: "Just let your hair fly free.",
@@ -57,7 +57,7 @@ const dogsData = [
     hasBeenLiked: false
   },
   {
-    name: "Frankie",
+    name: "Amos",
     avatar: "images/dog-frankie.jpg",
     age: 7,
     bio: "True love. Delivered.",
