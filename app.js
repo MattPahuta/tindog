@@ -21,15 +21,13 @@ function handleSwipe(e) {
   }
 }
 
-
-// getNextDog v1.1
+// get next dog 
 function getNextDog() {
   isWaiting = true; // prevent handleSwipe from running while waiting to get next dog
   if (dogsData.length) { // check there's dogs available in the array
     currentDog = new Dog(dogsData.shift()) // assign next dog to currentDog
     setTimeout(render, 1200) // wait ~ a second to render next dog
   } else { // if no more dogs...
-    // console.log('nope')
     setTimeout(noMoreDogsHtml, 1200) // wait ~ a second to call noMoreDogs
   }
 }
@@ -62,8 +60,6 @@ function noMoreDogsHtml() { // end of dogs array messaging
 function render() {
   isWaiting = false; // once the new dog is called to render, flip isWaiting to false
   document.querySelector('.dog-container').innerHTML = currentDog.getDogHtml()
-  // console.log(`${currentDog.name} has been swiped: ${currentDog.hasBeenSwiped}`) // debug
-  // console.log(`${currentDog.name} has been liked: ${currentDog.hasBeenLiked}`) // debug
 }
 
 render()

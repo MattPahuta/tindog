@@ -116,14 +116,12 @@ h1 {
 } 
 
 .dog,
-.animal,
-.demo {
+.animal {
   padding: 1em;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* background-image: url('../images/dog-rex.jpg'); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -143,7 +141,7 @@ h1 {
 }
 
 .cat-end {
-  background-image: url('../images/cat-end.jpg');;
+  background-image: url('../images/cat-end.jpg');
 }
 
 .button-container {
