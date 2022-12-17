@@ -36,7 +36,7 @@ const dogsData = [
     name: "Jovie",
     avatar: "images/dog-josie.jpg",
     age: 6,
-    bio: "Just let your hair fly free.",
+    bio: "Don't you just love feeling the wind in your face?",
     hasBeenSwiped: false,
     hasBeenLiked: false
   },

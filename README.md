@@ -30,11 +30,11 @@ Users should be able to:
 
 ### Screenshot
 
-![](./images/project-ss.png)
+![](./images/project-ss-02.png)
 
 ### Links
 
-- Live Site URL: [Netlify-hosted demo site](https://)
+- Live Site URL: [Netlify-hosted demo site](https://cheerful-lokum-a5e644.netlify.app/)
 
 ## Built with
 

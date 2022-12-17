@@ -128,9 +128,9 @@ h1 {
 }
 
 .meta {
-  max-width: 85%;
+  max-width: 88%;
   background: rgb(46, 46, 46, .8);
-  padding: .25em .5em;
+  padding: .5em .5em;
   border-radius: 5px;
 }
 
@@ -139,6 +139,10 @@ h1 {
   margin-top: 2em;
   transform: rotate(-30deg);
 }
+
+/* .demo {
+  background-image: url('../images/dog-josie.jpg');
+} */
 
 .cat-end {
   background-image: url('../images/cat-end.jpg');
