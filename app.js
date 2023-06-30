@@ -5,9 +5,10 @@ import dogsData from './data.js';
 let currentDog = new Dog(dogsData.shift()); // get the first dog from the array (index 0)
 let isWaiting = false; // add to prevent double button execute on same image
 
-document.querySelectorAll('.swipe-btn').forEach(btn => { // add click listener to swipe buttons
-  btn.addEventListener('click', handleSwipe) // attach handleSwipe to swipe buttons
-})
+// button event handlers
+document.getElementById('swipe-left').addEventListener('click', handleSwipe);
+document.getElementById('swipe-right').addEventListener('click', handleSwipe);
+
 
 // handle the button clicks (swipes)
 function handleSwipe(e) {
