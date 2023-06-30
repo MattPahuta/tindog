@@ -4,17 +4,17 @@ import dogsData from './data.js';
 
 let currentDog = new Dog(dogsData.shift()); // get the first dog from the array (index 0)
 let isWaiting = false; // add to prevent double button execute on same image
-const swipeBtns = document.querySelectorAll('.swipe-btn'); // get the nope/like buttons
 
-swipeBtns.forEach(btn => { // add click listener to swipe buttons
+document.querySelectorAll('.swipe-btn').forEach(btn => { // add click listener to swipe buttons
   btn.addEventListener('click', handleSwipe) // attach handleSwipe to swipe buttons
 })
 
+// handle the button clicks (swipes)
 function handleSwipe(e) {
   if (!isWaiting) { // check if isWaiting resolves as falsy
-    currentDog.hasBeenSwiped = true; // flip the swiped flag  
+    currentDog.swiped(); // call currentDog's swiped method
     if (e.target.classList.contains('swipe-right')){ // determine btn selected
-      currentDog.hasBeenLiked = true; // flip hasBeenLiked to true
+      currentDog.liked(); // call currentDog's liked method
     } 
     handleBadgeHtml() // call handleBadgeHtml
     getNextDog() // call getNextDog
@@ -46,7 +46,8 @@ function handleBadgeHtml() {
   }
 }
 
-function noMoreDogsHtml() { // end of dogs array messaging
+// show a final image once all the dogs have been swiped
+function noMoreDogsHtml() { 
   document.querySelector('.dog-container').innerHTML = `
   <div class="animal cat-end"">
     <div class="dog-meta">

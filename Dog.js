@@ -3,7 +3,15 @@ class Dog {
   constructor(data) {
     Object.assign(this, data)
   }
-
+  // swiped method
+  swiped() {
+    this.hasBeenSwiped = true;
+  }
+  // liked method 
+  liked() {
+    this.hasBeenLiked = true;
+  }
+  // build and return the dog's html
   getDogHtml() {
     const { name, avatar, age, bio } = this;
     return `
