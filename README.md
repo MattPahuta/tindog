@@ -30,7 +30,7 @@ Users should be able to:
 
 ### Screenshot
 
-![](./images/project-ss-02.png)
+![](./images/project-ss.png)
 
 ### Links
 
