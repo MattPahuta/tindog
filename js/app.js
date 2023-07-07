@@ -14,7 +14,7 @@ document.getElementById('swipe-right').addEventListener('click', handleSwipe);
 function handleSwipe(e) {
   if (!isWaiting) { // check if isWaiting resolves as falsy
     currentDog.swiped(); // call currentDog's swiped method
-    if (e.target.classList.contains('swipe-right')){ // determine btn selected
+    if (e.target.dataset.swipe === 'right') { // check if dog is swiped right
       currentDog.liked(); // call currentDog's liked method
     } 
     handleBadgeHtml() // call handleBadgeHtml
